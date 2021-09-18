@@ -1,4 +1,3 @@
-import './App.css';
 import Navbar from './components/Navbar';
 import TodoList from './components/TodoList';
 import Signup from './components/Signup';

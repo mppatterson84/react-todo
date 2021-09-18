@@ -1,6 +1,6 @@
 const TodoList = () => {
   return (
-    <div>
+    <div className="card">
       <h1>Todo</h1>
     </div>
   );
