@@ -11,11 +11,8 @@ function App() {
       <Navbar />
       <div className="container">
         <Route exact path="/signup" component={Signup} />
-        {/* <Signup /> */}
         <Route exact path="/login" component={Login} />
-        {/* <Login /> */}
         <Route exact path="/" component={TodoList} />
-        {/* <TodoList /> */}
       </div>
     </BrowserRouter>
   );
