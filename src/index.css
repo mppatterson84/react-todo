@@ -11,7 +11,7 @@ body {
   min-width: 300px;
   max-width: 600px;
   padding: 0.5em;
-  margin: auto;
+  margin: 1em auto;
 }
 .todo:nth-of-type(even) {
   background-color: rgba(34, 195, 41, 0.25);
