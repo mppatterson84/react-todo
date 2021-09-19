@@ -104,6 +104,16 @@ function App() {
     setTodos([...todos, data]);
   };
 
+  // Delete todo
+  const deleteTodo = async id => {
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/todos/v1/${id}/`, {
+      headers: { 'X-CSRFToken': csrftoken },
+      credentials: 'include',
+      method: 'DELETE'
+    });
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   // Toggle complete
   const toggleComplete = async id => {
     const todoToToggle = await fetchTodo(id);
@@ -156,6 +166,7 @@ function App() {
           component={() => (
             <TodoList
               todos={todos}
+              deleteTodo={deleteTodo}
               toggleComplete={toggleComplete}
               addTodo={addTodo}
               userId={userId}
