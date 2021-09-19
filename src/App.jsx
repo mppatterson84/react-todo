@@ -172,6 +172,7 @@ function App() {
               userId={userId}
               showAddTodo={showAddTodo}
               setShowAddTodo={setShowAddTodo}
+              username={username}
             />
           )}
         />

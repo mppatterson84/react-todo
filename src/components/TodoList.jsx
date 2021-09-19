@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Todos from './Todos';
 import Header from './Header';
 import AddTodo from './AddTodo';
@@ -9,14 +10,19 @@ const TodoList = ({
   addTodo,
   userId,
   showAddTodo,
-  setShowAddTodo
+  setShowAddTodo,
+  username
 }) => {
   return (
     <div className="card">
-      <Header
-        addTodo={() => setShowAddTodo(!showAddTodo)}
-        showAddTodo={showAddTodo}
-      />
+      {username !== 'guest' ? (
+        <Header
+          addTodo={() => setShowAddTodo(!showAddTodo)}
+          showAddTodo={showAddTodo}
+        />
+      ) : (
+        <h1>Todo</h1>
+      )}
       {showAddTodo && <AddTodo addTodo={addTodo} userId={userId} />}
       {todos.length > 0 ? (
         <Todos
@@ -24,8 +30,12 @@ const TodoList = ({
           deleteTodo={deleteTodo}
           toggleComplete={toggleComplete}
         />
+      ) : username !== 'guest' ? (
+        <p>Todo list is empty. Add some todos.</p>
       ) : (
-        <p>No todos available. Add some todos.</p>
+        <p>
+          <Link to="/login">Login</Link> to manage todos.
+        </p>
       )}
     </div>
   );
