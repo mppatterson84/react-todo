@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 
 function App() {
+  const [todos, setTodos] = useState([]);
   const [username, setUsername] = useState(
     Cookies.get('username') ? Cookies.get('username') : 'guest'
   );
@@ -47,6 +48,28 @@ function App() {
     return data;
   };
 
+  // Get Todos
+  useEffect(() => {
+    const getTodos = async () => {
+      const todosFromServer = await fetchTodos();
+      setTodos(todosFromServer);
+    };
+    if (username !== 'guest') {
+      getTodos();
+    }
+  }, [username]);
+
+  // Fetch Todos
+  const fetchTodos = async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/todos/v1/`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    });
+    const data = await res.json();
+
+    return data;
+  };
+
   return (
     <BrowserRouter>
       <Navbar user={username} setUsername={setUsername} csrftoken={csrftoken} />
@@ -61,7 +84,15 @@ function App() {
           path="/login"
           component={() => <Login getUser={getUser} />}
         />
-        <Route exact path="/" component={TodoList} />
+        <Route
+          exact
+          path="/"
+          component={() => (
+            <TodoList
+              todos={todos}
+            />
+          )}
+        />
       </div>
     </BrowserRouter>
   );
