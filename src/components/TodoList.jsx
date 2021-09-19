@@ -1,8 +1,20 @@
+import Todos from './Todos';
+import Header from './Header';
+import AddTodo from './AddTodo';
+
 const TodoList = ({
   todos,
+  addTodo,
+  showAddTodo,
+  setShowAddTodo
 }) => {
   return (
     <div className="card">
+      <Header
+        addTodo={() => setShowAddTodo(!showAddTodo)}
+        showAddTodo={showAddTodo}
+      />
+      {showAddTodo && <AddTodo addTodo={addTodo} userId={userId} />}
       {todos.length > 0 ? (
         <Todos
           todos={todos}

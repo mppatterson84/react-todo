@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 
 function App() {
+  const [showAddTodo, setShowAddTodo] = useState(false);
   const [todos, setTodos] = useState([]);
   const [username, setUsername] = useState(
     Cookies.get('username') ? Cookies.get('username') : 'guest'
@@ -70,6 +71,22 @@ function App() {
     return data;
   };
 
+  // Add Todo
+  const addTodo = async todo => {
+    const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/todos/v1/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken
+      },
+      credentials: 'include',
+      body: JSON.stringify(todo)
+    });
+    const data = await res.json();
+
+    setTodos([...todos, data]);
+  };
+
   return (
     <BrowserRouter>
       <Navbar
@@ -95,6 +112,9 @@ function App() {
           component={() => (
             <TodoList
               todos={todos}
+              addTodo={addTodo}
+              showAddTodo={showAddTodo}
+              setShowAddTodo={setShowAddTodo}
             />
           )}
         />
