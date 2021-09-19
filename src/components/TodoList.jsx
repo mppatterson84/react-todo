@@ -4,7 +4,9 @@ import AddTodo from './AddTodo';
 
 const TodoList = ({
   todos,
+  toggleComplete,
   addTodo,
+  userId,
   showAddTodo,
   setShowAddTodo
 }) => {

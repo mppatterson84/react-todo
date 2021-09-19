@@ -71,6 +71,23 @@ function App() {
     return data;
   };
 
+  // Fetch Todo
+  const fetchTodo = async id => {
+    const res = await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/todos/v1/${id}/`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+        credentials: 'include'
+      }
+    );
+    const data = await res.json();
+
+    return data;
+  };
+
   // Add Todo
   const addTodo = async todo => {
     const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/todos/v1/`, {
@@ -85,6 +102,33 @@ function App() {
     const data = await res.json();
 
     setTodos([...todos, data]);
+  };
+
+  // Toggle complete
+  const toggleComplete = async id => {
+    const todoToToggle = await fetchTodo(id);
+    const updatedTodo = { ...todoToToggle, completed: !todoToToggle.completed };
+
+    const res = await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/todos/v1/${id}/`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+        credentials: 'include',
+        body: JSON.stringify(updatedTodo)
+      }
+    );
+
+    const data = await res.json();
+
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, completed: data.completed } : todo
+      )
+    );
   };
 
   return (
@@ -112,7 +156,9 @@ function App() {
           component={() => (
             <TodoList
               todos={todos}
+              toggleComplete={toggleComplete}
               addTodo={addTodo}
+              userId={userId}
               showAddTodo={showAddTodo}
               setShowAddTodo={setShowAddTodo}
             />

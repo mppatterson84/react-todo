@@ -7,6 +7,7 @@ const Todos = ({ todos, deleteTodo, toggleComplete }) => {
         <Todo
           key={todo.id}
           todo={todo}
+          toggleComplete={toggleComplete}
         />
       ))}
     </>
