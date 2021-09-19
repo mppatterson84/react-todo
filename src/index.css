@@ -10,7 +10,7 @@ body {
 .card {
   min-width: 300px;
   max-width: 600px;
-  padding: 1em;
+  padding: 0.5em;
   margin: auto;
 }
 .todo:nth-of-type(even) {
