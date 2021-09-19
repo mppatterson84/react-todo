@@ -1,7 +1,17 @@
-const TodoList = () => {
+const TodoList = ({
+  todos,
+}) => {
   return (
     <div className="card">
-      <h1>Todo</h1>
+      {todos.length > 0 ? (
+        <Todos
+          todos={todos}
+          deleteTodo={deleteTodo}
+          toggleComplete={toggleComplete}
+        />
+      ) : (
+        <p>No todos available. Add some todos.</p>
+      )}
     </div>
   );
 };
