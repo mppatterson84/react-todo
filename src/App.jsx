@@ -72,7 +72,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar user={username} setUsername={setUsername} csrftoken={csrftoken} />
+      <Navbar
+        user={username}
+        setUsername={setUsername}
+        csrftoken={csrftoken}
+        setTodos={setTodos}
+      />
       <div className="container">
         <Route
           exact
