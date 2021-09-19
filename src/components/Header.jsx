@@ -15,7 +15,7 @@ const Header = ({ title, addTodo, showAddTodo }) => {
 };
 
 Header.defaultProps = {
-  title: 'Todos'
+  title: 'Todo List'
 };
 
 Header.propTypes = {
