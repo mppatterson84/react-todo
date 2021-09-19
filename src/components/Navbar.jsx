@@ -26,7 +26,8 @@ const Navbar = ({ user, setUsername, csrftoken, setTodos }) => {
         <Link className="navbar-brand" to="/">
           Todo
         </Link>
-        <span className="navbar-text me-2 mb-2 ms-auto">Welcome, {user}</span>
+        <span className="navbar-text mb-2 ms-auto px-2">Welcome, {user}</span>
+        <span className="navbar-text mb-2 mx-1">|</span>
         <div>
           <ul className="navbar-nav me-auto mb-2 mb-md-8">
             {user === 'guest' ? (
