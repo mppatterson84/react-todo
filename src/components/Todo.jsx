@@ -3,9 +3,9 @@ import { FaTrashAlt } from 'react-icons/fa';
 const Todo = ({ todo, deleteTodo, toggleComplete }) => {
   return (
     <div className="todo mt-1 p-2">
-      <span className="delete">
-        <FaTrashAlt onClick={() => deleteTodo(todo.id)} />
-      </span>
+      <button className="delete btn p-0" onClick={() => deleteTodo(todo.id)}>
+        <FaTrashAlt />
+      </button>
       <span>
         <input
           type="checkbox"
