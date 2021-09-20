@@ -22,11 +22,11 @@ function App() {
 
   // Get User
   const getUser = useCallback(() => {
-    const getUser = async () => {
+    const getUserFromServer = async () => {
       const userFromServer = await fetchUser();
       Cookies.set('username', userFromServer[0].username, { expires: 14 });
     };
-    getUser();
+    getUserFromServer();
   }, []);
 
   // Fetch User
