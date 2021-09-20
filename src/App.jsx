@@ -62,10 +62,13 @@ function App() {
 
   // Fetch Todos
   const fetchTodos = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/todos/v1/`, {
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include'
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/todos/v1/?ordering=pk`,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      }
+    );
     const data = await res.json();
 
     return data;
