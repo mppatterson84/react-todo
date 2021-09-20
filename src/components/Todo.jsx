@@ -17,7 +17,13 @@ const Todo = ({ todo, deleteTodo, toggleComplete }) => {
       </span>
       <h4>{todo.title}</h4>
       <p>{todo.detail}</p>
-      <p>{todo.due_by}</p>
+      <p>
+        Due by:{' '}
+        {new Date(todo.due_by).toLocaleString('en-US', {
+          timeStyle: 'short',
+          dateStyle: 'full'
+        })}
+      </p>
     </div>
   );
 };
