@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ user, setUsername, csrftoken, setTodos }) => {
+const Navbar = ({ user, setUsername, csrftoken, setTodos, setShowAddTodo }) => {
   const logout = async () => {
     await fetch(
       `${process.env.REACT_APP_API_HOST}/api/todos/v1/rest-auth/logout/`,
@@ -18,6 +18,7 @@ const Navbar = ({ user, setUsername, csrftoken, setTodos }) => {
     setUsername('guest');
     Cookies.remove('username');
     setTodos([]);
+    setShowAddTodo(false);
   };
 
   return (

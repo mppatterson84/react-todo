@@ -148,6 +148,7 @@ function App() {
         setUsername={setUsername}
         csrftoken={csrftoken}
         setTodos={setTodos}
+        setShowAddTodo={setShowAddTodo}
       />
       <div className="container">
         <Route
