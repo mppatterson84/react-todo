@@ -6,11 +6,12 @@ const Login = ({ getUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(null);
 
   const loginUser = async e => {
     e.preventDefault();
 
-    await fetch(
+    const res = await fetch(
       `${process.env.REACT_APP_API_HOST}/api/todos/v1/rest-auth/login/`,
       {
         method: 'POST',
@@ -23,8 +24,17 @@ const Login = ({ getUser }) => {
       }
     );
 
-    setRedirect(true);
-    getUser();
+    const data = await res.json();
+
+    if (data.key) {
+      setRedirect(true);
+      getUser();
+      console.clear();
+    } else {
+      setLoginStatus(false);
+      setUsername('');
+      setPassword('');
+    }
   };
 
   if (redirect) {
@@ -35,6 +45,7 @@ const Login = ({ getUser }) => {
     <div className="card my-3 mx-auto p-2">
       <form onSubmit={loginUser}>
         <h3 className="mb-3 fw-normal">Log In</h3>
+        {loginStatus === false && <p>Login failed. Please try again.</p>}
         <input
           type="text"
           placeholder="Username"
