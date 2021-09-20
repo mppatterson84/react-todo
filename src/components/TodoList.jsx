@@ -23,7 +23,13 @@ const TodoList = ({
       ) : (
         <h1>Todo</h1>
       )}
-      {showAddTodo && <AddTodo addTodo={addTodo} userId={userId} />}
+      {showAddTodo && (
+        <AddTodo
+          addTodo={addTodo}
+          userId={userId}
+          setShowAddTodo={setShowAddTodo}
+        />
+      )}
       {todos.length > 0 ? (
         <Todos
           todos={todos}

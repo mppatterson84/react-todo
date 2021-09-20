@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const AddTodo = ({ addTodo, userId }) => {
+const AddTodo = ({ addTodo, userId, setShowAddTodo }) => {
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
   const [completed, setCompleted] = useState(false);
@@ -22,6 +22,7 @@ const AddTodo = ({ addTodo, userId }) => {
     setCompleted(false);
     setDueBy('');
     setAuthor(userId);
+    setShowAddTodo(false);
   };
 
   return (
