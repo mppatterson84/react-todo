@@ -49,6 +49,14 @@ function App() {
     return data;
   };
 
+  // Call fetchUser on inital render
+  // if the user is logged in
+  useEffect(() => {
+    if (Cookies.get('username')) {
+      fetchUser();
+    }
+  }, []);
+
   // Get Todos
   useEffect(() => {
     const getTodos = async () => {
